@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class main {
+	//CHECKSTYLE:OFF
+    public static void main(String[] args) {
+    //CHECKSTYLE:ON
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the destination of the vacation:");
+        String destination = scanner.nextLine();
+
+        System.out.println("Enter the number of travelers:");
+        int numTravelers = scanner.nextInt();
+
+        System.out.println("Enter the duration of the vacation in days:");
+        int duration = scanner.nextInt();
+
+        int baseCost = 1000;
+        int additionalCost = 0;
+
+        if (destination.equalsIgnoreCase("Paris")) {
+            additionalCost += 500;
+        } else if (destination.equalsIgnoreCase("New York City")) {
+            additionalCost += 600;
+        }
+
+        if (numTravelers > 4 && numTravelers < 10) {
+            baseCost *= 0.9;
+        } else if (numTravelers >= 10) {
+            baseCost *= 0.8;
+        }
+
+        if (duration < 7) {
+            baseCost += 200;
+        } else if (duration > 30 || numTravelers == 2) {
+            baseCost -= 200;
+        }
+
+        if (numTravelers > 80 || duration <= 0 || baseCost <= 0) {
+            System.out.println("-1");
+            return;
+        }
+
+        System.out.println(baseCost + additionalCost);
+    }
+}
